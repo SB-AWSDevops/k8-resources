@@ -1,22 +1,18 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: suri-nginx
-  labels:
-    app: suri-nginx
-    purpose: deployment
-    tier: web
+  name: nginx-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: suri-nginx
+      app: nginx
       tier: web
       project: test
   template:
     metadata:
       labels:
-        app: suri-nginx
+        app: nginx
         tier: web
         project: test
         extra-key: extra-value
@@ -24,4 +20,20 @@ spec:
       containers:
       - name: suri-nginx
         image: nginx
+
+# LoadBalancer Service Configuration
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 80 # Port exposed by the LoadBalancer
+    targetPort: 80 # Port on the container
+
 
