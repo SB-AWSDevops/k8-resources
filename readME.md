@@ -77,3 +77,38 @@ Kubernetes Services
 │           ├── kube-proxy intercepts request
 │           ├── kube-proxy routes traffic to a pod
 │           └── Pod handles the request
+
+
+------------------------------------------------------------------------------------
+
+EBS and EFS
+
+Storage Solutions
+│
+├── Amazon EBS (Elastic Block Store)
+│   ├── Volumes
+│   │   ├── General Purpose SSD (gp3/gp2)
+│   │   ├── Provisioned IOPS SSD (io1/io2)
+│   │   ├── Throughput Optimized HDD (st1)
+│   │   └── Cold HDD (sc1)
+│   ├── Snapshots
+│   │   ├── Incremental
+│   │   └── Stored in S3
+│   ├── Attachments
+│   │   ├── Single-Attachment
+│   │   └── Multi-Attach
+│   └── Internal Working
+│       ├── Block-Level Storage
+│       ├── Replication
+│       └── Performance
+│
+└── Amazon EFS (Elastic File System)
+    ├── File Systems
+    │   ├── Standard
+    │   └── Infrequent Access (IA)
+    ├── Mount Targets
+    └── Internal Working
+        ├── File-Level Storage
+        ├── Replication
+        └── Scaling
+
