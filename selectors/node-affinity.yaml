@@ -1,23 +1,22 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-pod-node-affinity
+  name: high-priority-job
 spec:
+  containers:
+  - name: job-container
+    image: job-image
   affinity:
     nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - preference:
-            matchExpressions:
-              - key: project
-                operator: In
-                values:
-                - expense
-          weight: 1  # Weight of the preference. Higher weight means stronger preference.
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: hardware
+            operator: In
+            values:
+            - gpu
   tolerations:
-  - key: "project"
+  - key: "dedicated"
     operator: "Equal"
-    value: "expense"
+    value: "high-priority"
     effect: "NoSchedule"
-  containers:
-  - name: nginx-node-affinity
-    image: nginx
