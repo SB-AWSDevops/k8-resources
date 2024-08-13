@@ -6,12 +6,13 @@ spec:
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: project
-            operator: In
-            values:
-            - expense
+        - preference:
+            matchExpressions:
+              - key: project
+                operator: In
+                values:
+                - expense
+          weight: 1  # Weight of the preference. Higher weight means stronger preference.
   tolerations:
   - key: "project"
     operator: "Equal"
@@ -20,4 +21,3 @@ spec:
   containers:
   - name: nginx-node-affinity
     image: nginx
-
