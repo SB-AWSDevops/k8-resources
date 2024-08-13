@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: job-container
-    image: job-image
+    image: nginx
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
