@@ -11,10 +11,10 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: hardware
+          - key: project
             operator: In
             values:
-            - gpu
+            - expense
   tolerations:
   - key: "dedicated"
     operator: "Equal"
