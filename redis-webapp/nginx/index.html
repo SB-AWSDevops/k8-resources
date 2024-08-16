@@ -8,39 +8,20 @@
         async function setValue() {
             const key = document.getElementById('key').value;
             const value = document.getElementById('value').value;
-            try {
-                const response = await fetch('/set', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ key, value }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                document.getElementById('result').innerText = 'Value set successfully!';
-            } catch (error) {
-                document.getElementById('result').innerText = `Error: ${error.message}`;
-            }
+            await fetch('/set', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ key, value }),
+            });
         }
 
         async function getValue() {
             const key = document.getElementById('key').value;
-            try {
-                const response = await fetch(`/get?key=${key}`);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const result = await response.text();
-                document.getElementById('result').innerText = result;
-            } catch (error) {
-                document.getElementById('result').innerText = `Error: ${error.message}`;
-            }
+            const response = await fetch(`/get?key=${key}`);
+            const result = await response.text();
+            document.getElementById('result').innerText = result;
         }
     </script>
 </head>

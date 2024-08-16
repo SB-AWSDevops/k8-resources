@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: node-backend-service
 spec:
-  type: LoadBalancer
   selector:
     app: node-backend
   ports:
     - protocol: TCP
       port: 3000
       targetPort: 3000
+  type: ClusterIP
