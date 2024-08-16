@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Redis Test</title>
+        <script>
+            async function setValue() {
+                const key = document.getElementById('key').value;
+                const value = document.getElementById('value').value;
+                await fetch('/set', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ key, value }),
+                });
+            }
+
+            async function getValue() {
+                const key = document.getElementById('key').value;
+                const response = await fetch(`/get?key=${key}`);
+                const result = await response.text();
+                document.getElementById('result').innerText = result;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Redis Cache Test</h1>
+        <input type="text" id="key" placeholder="Key" />
+        <input type="text" id="value" placeholder="Value" />
+        <button onclick="setValue()">Set Value</button>
+        <button onclick="getValue()">Get Value</button>
+        <div id="result"></div>
+    </body>
+    </html>
