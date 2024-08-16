@@ -24,6 +24,6 @@ spec:
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: node-backend
-        image: my-registry/node-backend:latest
+        image: premdaas/backend:v1
         ports:
         - containerPort: 3000
