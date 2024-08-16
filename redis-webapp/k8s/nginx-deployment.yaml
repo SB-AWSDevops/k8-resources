@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: your-custom-nginx-image:latest
+          image: premdaas/backend:v1
           ports:
             - containerPort: 80
           volumeMounts:
